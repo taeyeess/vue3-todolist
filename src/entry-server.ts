@@ -26,7 +26,7 @@ export async function render(url, manifest) {
   const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
 
   
-  return [html, preloadLinks]
+  return { appHtml: html, preloadLinks, state }
 }
 
 function renderPreloadLinks(modules:any, manifest: any) {

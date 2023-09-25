@@ -30,7 +30,7 @@ export async function createServer(
    * @type {import('vite').ViteDevServer}
    */
   // 동적으로 받아온 vite에 createServer()를 호출하고 vite 개발 서버를 생성 하여 vite변수에 할당
-  let vite
+  let vite;
   if (!isProd) {
     vite = await ( await import('vite') ).createServer({
       root,
@@ -61,8 +61,7 @@ export async function createServer(
       }),
     )
   }
-  
-  
+    
   /**
    * - 요청 url에 따라 서버렌더링, 또는 클라이언트 렌더링을 수행
    * - 개발 환경에서는 동적으로 HTML템플릿을 읽어오고, vite를 사용하여 템플릿을 변환한다. 
@@ -84,7 +83,7 @@ export async function createServer(
         render = (await import('./dist/server/entry-server.ts')).render
       }
 
-      const [appHtml, preloadLinks, state] = await render(url, manifest)
+      const { appHtml, preloadLinks, state } = await render(url, manifest)
 
       const html = template
         .replace(`<!--preload-links-->`, preloadLinks)
